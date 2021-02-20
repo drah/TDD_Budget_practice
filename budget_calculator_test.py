@@ -1,7 +1,6 @@
 from datetime import date
 
 from budget_calculator import BudgetCalculator
-from budget_repo import get_all
 
 import unittest
 from unittest.mock import patch
@@ -68,9 +67,7 @@ class BudgetCalculatorTest(unittest.TestCase):
         self.assertEqual(12, budget)
 
     def test_one_day_given_null(self):
-        self.fake_get_all.return_value = [
-
-        ]
+        self.fake_get_all.return_value = []
         calculator = BudgetCalculator()
         budget = calculator.query(date(2021, 1, 1), date(2021, 1, 1))
         self.assertEqual(0, budget)
@@ -107,8 +104,6 @@ class BudgetCalculatorTest(unittest.TestCase):
         calculator = BudgetCalculator()
         budget = calculator.query(date(2020, 12, 31), date(2021, 1, 2))
         self.assertEqual(21, budget)
-
-
 
 
 if __name__ == '__main__':
